@@ -1,0 +1,7 @@
+res://scenes/skeleton/skeleton.tscn
+res://scenes/player/player.gd
+res://scenes/skeleton/skeleton.gd
+res://scenes/player/player.tscn
+res://scenes/main.tscn
+res://scenes/tilemap/tile_map_layer_path_find.tscn
+res://scenes/tilemap/tile_map_layer_path_find.gd
