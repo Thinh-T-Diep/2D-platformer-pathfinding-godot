@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Platformer Pathfinding GDScript 4.4.1
 ## Description
 This Platformer Pathfinding project provides a rudimentary algorithm to create a pathfinding behavior to a Player character and and enemy character using the built-in `A* Graph` node in Godot. It is converted from the tutorial series [Godot 4.x Advanced 2D Platformer Path Finding](https://youtube.com/playlist?list=PL6Ikt4l3NbVi_9_-TqX-JUsJ9nIFeYAFE&si=1pFHbTRJXprzpWVb) written in C# by the YouTube channel [TheSolarString](https://www.youtube.com/@TheSolarString)  into **GDScript 4.4.1** using the new TileMapLayer node (instead of the deprecated TileMap node in previous versions). I highly recommend anyone interested in using this tool to watch his video series to understand the algorithm better.
