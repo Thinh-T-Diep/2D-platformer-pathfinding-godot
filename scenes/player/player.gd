@@ -11,6 +11,8 @@ const SMALL_JUMP_VELOCITY: float = -370.0
 const TINY_JUMP_VELOCITY: float = -270.0
 const JUMP_DISTANCE_HEIGHT_THRESHOLD: float = 120.0
 
+const TILE_MAP_GROUP_NAME: String = "tile_map_layer_pathfind"
+
 # Get the gravity from the project settings to sync with RigidBody2D nodes
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -21,7 +23,7 @@ var _prev_target:TileMapLayerPathFind.PointInfo = null
 
 
 func _ready() -> void:
-	_path_find_2d = get_parent().get_node("TileMapLayerPathFind") as TileMapLayerPathFind
+	_path_find_2d = get_tree().get_first_node_in_group(TILE_MAP_GROUP_NAME) as TileMapLayerPathFind
 
 
 func go_to_next_point_in_path() -> void:
@@ -89,7 +91,10 @@ func jump_left_edge_to_right_edge() -> bool:
 
 
 func jump() -> void:
-	if _prev_target == null or _target == null or _target.is_position_point:
+	if _prev_target == null or \
+		#_prev_target.is_position_point or \ # If controlling player by button or keyboard inputs, may need to uncomment this line 
+		_target == null or \
+		_target.is_position_point:
 		return
 
 	# Skip jump if previous target is above the target position and distance is below threshold

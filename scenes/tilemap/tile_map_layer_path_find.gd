@@ -2,6 +2,9 @@ extends TileMapLayer
 
 class_name TileMapLayerPathFind
 
+
+const GRAPH_POINT_SCENE_FILEPATH: String = "res://scenes/tilemap/graph_point.tscn"
+
 class PointInfo:
 	var is_fall_tile: bool
 	var is_left_edge: bool
@@ -17,9 +20,19 @@ class PointInfo:
 		graph_position = pos
 
 
-@export var _show_debug_graph: bool = true	# If the graph points and lines should be drawn
+#=====================================
+# TILE MAP LAYER A* GRAPH SETTINGS
+#=====================================
+@export var _show_debug_graph: bool = true                # If the graph points and lines should be drawn
 @export var _jump_distance: int = 4                       # Distance between two tiles to count as a jump
-@export var _jump_height: int = 4                         # Height between two tiles to connect a jump	
+@export var _jump_height: int = 4                         # Height between two tiles to connect a jump
+
+## Set to 1 when the collision shape of the characters are smalller than the tile size /
+## If the collision shape of the characters are larger than the tile size, set it to be larger than
+## than the smallest multiple of their ratio, else characters won't fall down when they reach the edge
+## e.g. char size is 20px in the x-axis, and tile size is 16px, set this to 2 (16 * 2 > 20)  
+@export var fall_tile_horizontal_scan = 2
+#=====================================
 
 const COLLISION_LAYER: int = 0  			# The collision layer for the tiles
 const CELL_IS_EMPTY: int = -1				# TileMap defines an empty space as -1
@@ -32,7 +45,7 @@ var _point_info_list: Array[PointInfo]
 
 
 func _ready() -> void:
-	_graph_point = load("res://scenes/tilemap/graph_point.tscn")
+	_graph_point = load(GRAPH_POINT_SCENE_FILEPATH)
 	_used_tiles = get_used_cells()
 	build_graph()
 
@@ -336,11 +349,11 @@ func get_start_scan_tile_for_fall_point(tile: Vector2i) -> Vector2i:
 
 		# If the point is a left edge
 		if (point.is_left_edge):
-			tile_scan = Vector2i(tile.x - 1, tile.y - 1)    # Set the start position to start scanning one tile to the left
+			tile_scan = Vector2i(tile.x - fall_tile_horizontal_scan, tile.y - 1)    # Set the start position to start scanning one tile to the left
 			return tile_scan                                # Return the tile scan position
 		# If the point is a right edge
 		elif (point.is_right_edge):
-			tile_scan = Vector2i(tile.x + 1, tile.y - 1)    # Set the start position to start scanning one tile to the right
+			tile_scan = Vector2i(tile.x + fall_tile_horizontal_scan, tile.y - 1)    # Set the start position to start scanning one tile to the right
 			return tile_scan                                # Return the tile scan position
 		return Vector2i.MAX  # Return Vector2i.MAX, representing not found state
 
