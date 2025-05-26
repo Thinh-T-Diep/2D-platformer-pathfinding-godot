@@ -43,4 +43,4 @@ In the current implementation, one one graph is drawn for all characters using t
 
 ## Contact
 
-Contact me on [itch.io](https://lestavol.itch.io/) or Discord as Lestavol.
+Contact and follow me on [itch.io](https://lestavol.itch.io/) for future updates and new projects or contact me on Discord as Lestavol.
