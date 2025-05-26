@@ -4,8 +4,11 @@ This Platformer Pathfinding project provides a rudimentary algorithm to create a
 
 Original Repository here: https://github.com/solarstrings/Godot4.x_Advanced2DPlatformerPathFinding
 
-**Note:** Some methods that return Nullable types that were used in the original tutorial in C# were converted into returning an effectively invalid result such as `Vector2i.MAX` instead of `null` 
+#### Note:
+1. Some methods that return Nullable types that were used in the original tutorial in C# were converted into returning an effectively invalid result such as `Vector2i.MAX` instead of `null` 
 in order to preserves the static typing of the methods and take advantage of the editor's IntelliSense. If you adopt these scripts into your game, depending on the game, this may not work as expected.
+2. Assets have been shared with original author's permission.
+   
 ## How to use
 
  1. In Project -> Project Settings -> Input Map, set up 2 inputs named `left_mouse_button` and `start_follow`. In the demo project, `left_mouse_button` is set up as the left mouse button, and `start_follow` is set up with the space-bar, the right mouse button and the enter key.
